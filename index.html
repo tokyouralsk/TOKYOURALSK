@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <meta charset="UTF-8">
-<title>TOKYO Купон</title>
+<title>TOKYO Проверка купона</title>
 
 <style>
 
 body{
 font-family:Arial;
-background:#f3f3f3;
+background:#f4f4f4;
 text-align:center;
 padding-top:120px;
 }
 
 .box{
 background:white;
-width:340px;
+width:360px;
 margin:auto;
 padding:40px;
 border-radius:12px;
@@ -28,6 +29,8 @@ width:100%;
 padding:14px;
 font-size:18px;
 margin-top:15px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
 button{
@@ -35,12 +38,21 @@ width:100%;
 padding:14px;
 font-size:18px;
 margin-top:15px;
+background:black;
+color:white;
+border:none;
+border-radius:6px;
 cursor:pointer;
+}
+
+button:hover{
+background:#333;
 }
 
 #result{
 margin-top:25px;
-font-size:20px;
+font-size:22px;
+font-weight:bold;
 }
 
 </style>
@@ -53,7 +65,7 @@ font-size:20px;
 
 <h2>Проверить купон</h2>
 
-<input id="coupon" placeholder="TOKYO-JH-92348Q">
+<input id="coupon" placeholder="Введите номер купона">
 
 <button onclick="checkCoupon()">Открыть приз</button>
 
@@ -67,13 +79,26 @@ function checkCoupon(){
 
 var code=document.getElementById("coupon").value;
 
+if(code==""){
+document.getElementById("result").innerText="Введите купон";
+return;
+}
+
 var url="ВСТАВЬ_ССЫЛКУ_СКРИПТА?coupon="+code;
 
 fetch(url)
+
 .then(response=>response.text())
+
 .then(data=>{
 
 document.getElementById("result").innerText=data;
+
+})
+
+.catch(error=>{
+
+document.getElementById("result").innerText="Ошибка проверки";
 
 });
 
@@ -82,4 +107,5 @@ document.getElementById("result").innerText=data;
 </script>
 
 </body>
+
 </html>
