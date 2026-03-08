@@ -51,8 +51,9 @@ background:#333;
 
 #result{
 margin-top:25px;
-font-size:22px;
-font-weight:bold;
+font-size:18px;
+text-align:left;
+white-space:normal;
 }
 
 </style>
@@ -80,11 +81,11 @@ function checkCoupon(){
 var code=document.getElementById("coupon").value;
 
 if(code==""){
-document.getElementById("result").innerText="Введите купон";
+document.getElementById("result").innerHTML="Введите купон";
 return;
 }
 
-var url="https://script.google.com/macros/s/AKfycbxj2xxMmyDQARoOu1rWNaFV917GR1FXyacWT78_tHvDwwvbnnYj164hXGEf3UVYN6UK/exec?coupon="+code;
+var url="ВСТАВЬ_URL_СКРИПТА?coupon="+code;
 
 fetch(url)
 
@@ -92,13 +93,13 @@ fetch(url)
 
 .then(data=>{
 
-document.getElementById("result").innerText=data;
+document.getElementById("result").innerHTML=data.replace(/\n/g,"<br>");
 
 })
 
 .catch(error=>{
 
-document.getElementById("result").innerText="Ошибка проверки";
+document.getElementById("result").innerHTML="Ошибка проверки";
 
 });
 
